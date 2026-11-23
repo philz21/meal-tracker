@@ -1,5 +1,8 @@
 import MacroBar from "@/components/MacroBar";
 import CalorieRing from "@/components/CalorieRing";
+import MealList from "@/components/MealList";
+import { sampleMeals, targets } from "@/lib/sampleData";
+import { getTotals } from "@/lib/nutrition";
 
 export default function Home() {
   //macros progress diagram
@@ -13,7 +16,7 @@ export default function Home() {
     <main className="min-h-screen bg-stone-100 p-5 text-gray-900">
       <h1 className="text-3xl font-bold">Today</h1>
 
-      <CalorieRing eaten={2140} target={3600} />
+      <CalorieRing eaten={2140} target={targets.calories} />
 
       <section className="mt-4 flex flex-col gap-4 rounded-2xl bg-white p-5">
         {macros.map((macro) =>
@@ -26,7 +29,8 @@ export default function Home() {
           />
       )}
       </section>
+
+      <MealList meals={sampleMeals} />
     </main>
   );
-
 }
