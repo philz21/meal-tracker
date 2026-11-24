@@ -5,6 +5,7 @@ import NextMealCard from "@/components/NextMealCard";
 import { sampleMeals, targets } from "@/lib/sampleData";
 import { getTotals } from "@/lib/nutrition";
 import TodaysDate from "@/components/TodayDate";
+import TodayDashboard from "@/components/TodayDashboard";
 
 
 export default function Home() {
@@ -23,24 +24,10 @@ export default function Home() {
     <main className="min-h-screen bg-stone-100 p-5 text-gray-900">
       <TodaysDate />
       <h1 className="text-3xl font-bold">Today</h1>
+      <TodayDashboard initialMeals={sampleMeals} targets={targets} />
 
-      <NextMealCard meals={sampleMeals} caloriesLeft={caloriesLeft} />
 
-      <CalorieRing eaten={totals.calories} target={targets.calories} />
 
-      <section className="mt-4 flex flex-col gap-4 rounded-2xl bg-white p-5">
-        {macros.map((macro) =>
-          <MacroBar
-            key={macro.label}
-            label={macro.label}
-            current={macro.current}
-            target={macro.target}
-            colour={macro.colour}
-          />
-      )}
-      </section>
-
-      <MealList meals={sampleMeals} />
     </main>
   );
 }

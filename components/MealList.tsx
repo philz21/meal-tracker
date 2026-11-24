@@ -2,15 +2,18 @@ import type { Meal } from "@/lib/types";
 
 type MealListProps = {
   meals: Meal[];
+  onToggle: (id:string) => void;
 };
 
-export default function MealList({ meals }: MealListProps) {
+export default function MealList({ meals, onToggle }: MealListProps) {
   return (
     <section className="mt-4 rounded-2xl bg-white px-5 py-2">
       {meals.map((meal) => (
-        <div
+        <button
           key={meal.id}
-          className="flex items-center gap-3 border-b border-gray-100 py-3 last:border-b-0"
+          type="button"
+          onClick={() => onToggle(meal.id)}
+          className="flex w-full items-center gap-3 border-b border-gray-100 py-3 text-left last:border-b-0"
         >
           <span
             className={`h-5 w-5 rounded-full border-2 ${
@@ -23,7 +26,7 @@ export default function MealList({ meals }: MealListProps) {
           <span className="text-sm text-gray-500">
             {meal.logged ? `${meal.calories} kcal` : "—"}
           </span>
-        </div>
+        </button>
       ))}
     </section>
   );

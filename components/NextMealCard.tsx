@@ -7,9 +7,10 @@ import { timeToMinutes, formatDuration, getNextMeal } from "@/lib/schedule";
 type NextMealCardProps = {
     meals: Meal[];
     caloriesLeft: number;
-}
+    onLog: (id: string) => void;
+};
 
-export default function NextMealCard({ meals, caloriesLeft }: NextMealCardProps) {
+export default function NextMealCard({ meals, caloriesLeft, onLog }: NextMealCardProps) {
     const now = useNow();
     const nextMeal = getNextMeal(meals);
 
@@ -48,6 +49,13 @@ export default function NextMealCard({ meals, caloriesLeft }: NextMealCardProps)
                     {status && `${status} · aim for around ${aim} kcal`}
                 </p>     
             </div>
+            <button
+            type="button"
+            onClick={() => onLog(nextMeal.id)}
+            className="min-h-11 rounded-xl bg-lime-300 font-bold text-gray-900"
+            >
+                Log this meal
+            </button>
         </section>
     );
 
